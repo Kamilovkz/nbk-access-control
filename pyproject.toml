@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "pass-verification"
+version = "0.1.0"
+description = ""
+authors = ["Kamilovkz <001kamilov@gmail.com>"]
+readme = "README.md"
+packages = [{include = "pass_verification", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.115.4"
+uvicorn = "^0.32.0"
+sqlalchemy = "^2.0.36"
+bcrypt = "^4.2.0"
+python-jose = "^3.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
