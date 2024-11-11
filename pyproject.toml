@@ -13,6 +13,7 @@ uvicorn = "^0.32.0"
 sqlalchemy = "^2.0.36"
 bcrypt = "^4.2.0"
 python-jose = "^3.3.0"
+python-telegram-bot = "^21.7"
 
 
 [build-system]
