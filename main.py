@@ -36,3 +36,8 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
         data={"sub": db_user.username}, expires_delta=access_token_expires
     )
     return {"access_token": access_token, "token_type": "bearer"}
+
+
+@app.get("/testing")
+def testing_data():
+    return {"status": "working"}
