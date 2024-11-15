@@ -5,7 +5,7 @@ from models import User
 from schemas import UserCreate, UserLogin
 from utils import hash_password, verify_password, create_access_token
 from datetime import timedelta
-from logic.connection import settings
+from config.settings import settings
 
 app = FastAPI()
 
@@ -41,4 +41,4 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
 
 @app.get("/testing")
 def testing_data():
-    return {"status": settings.TEST_VARIABLE}
+    print("test")
