@@ -1,11 +1,11 @@
 from fastapi import FastAPI, Depends, HTTPException
+import uvicorn
 from sqlalchemy.orm import Session
 from database import get_db
 from models import User
 from schemas import UserCreate, UserLogin
 from utils import hash_password, verify_password, create_access_token
 from datetime import timedelta
-from config.settings import settings
 
 app = FastAPI()
 
@@ -39,6 +39,5 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
     return {"access_token": access_token, "token_type": "bearer"}
 
 
-@app.get("/testing")
-def testing_data():
-    print("test")
+if __name__ == "__main__":
+    uvicorn.run("main:app", port=8000, host="0.0.0.0", reload=True)
