@@ -18,8 +18,8 @@ class UserLogin(BaseModel):
 class From(BaseModel):
     id: int
     is_bot: bool
-    first_name: str
-    username: str
+    first_name: str = None
+    username: str = None
     language_code: str
 
 
