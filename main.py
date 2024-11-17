@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Depends, HTTPException, Request
 import uvicorn
 from sqlalchemy.orm import Session
 from database import get_db
@@ -37,6 +37,12 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
         data={"sub": db_user.username}, expires_delta=access_token_expires
     )
     return {"access_token": access_token, "token_type": "bearer"}
+
+
+@app.post("/")
+async def read_root(request: Request):
+    print(await request.json())
+    return {"Hello": "World"}
 
 
 if __name__ == "__main__":
