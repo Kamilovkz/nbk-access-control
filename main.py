@@ -6,6 +6,8 @@ from models import User
 from schemas import UserCreate, UserLogin
 from utils import hash_password, verify_password, create_access_token
 from datetime import timedelta
+from schemas import Answer
+
 
 app = FastAPI()
 
@@ -41,8 +43,10 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
 
 @app.post("/")
 async def read_root(request: Request):
-    print(await request.json())
-    return {"Hello": "World"}
+    result = await request.json()
+    obj = Answer.model_validate(result)
+    print(obj.message.chat)
+    return obj
 
 
 if __name__ == "__main__":
