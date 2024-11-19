@@ -7,7 +7,8 @@ from schemas import UserCreate, UserLogin
 from utils import hash_password, verify_password, create_access_token
 from datetime import timedelta
 from schemas import Answer
-
+from config.settings import settings
+import requests
 
 app = FastAPI()
 
@@ -45,8 +46,15 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
 async def read_root(request: Request):
     result = await request.json()
     obj = Answer.model_validate(result)
-    print(obj.message.chat)
-    return obj
+    data = {
+        "chat_id": settings.ADMIN_CHAT_ID,
+        "text": obj.message.text,
+    }
+    r = requests.post(
+        f"https://api.telegram.org/bot{settings.TELEGRAM_BOT_KEY}/sendMessage",
+        data=data,
+    )
+    return r.status_code
 
 
 if __name__ == "__main__":
