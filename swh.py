@@ -7,4 +7,4 @@ r = requests.get(
     f"https://api.telegram.org/bot{settings.TELEGRAM_BOT_KEY}/setWebhook?url={whook}/"
 )
 
-print(r.json())
+# print(r.json())
