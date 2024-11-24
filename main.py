@@ -46,6 +46,7 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
 async def read_root(request: Request):
     result = await request.json()
     obj = Answer.model_validate(result)
+    print(obj)
     data = {
         "chat_id": settings.ADMIN_CHAT_ID,
         "text": obj.message.text,
